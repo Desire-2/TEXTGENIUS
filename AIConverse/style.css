@@ -1,0 +1,95 @@
+/* style.css */
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f2f2f2;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+h1 {
+  text-align: center;
+  color: #333333;
+}
+
+p {
+  line-height: 1.6;
+}
+
+form {
+  margin-bottom: 20px;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+.upload-btn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  cursor: pointer;
+}
+
+.upload-btn:hover {
+  background-color: #45a049;
+}
+
+.conversation {
+  border: 1px solid #ddd;
+  background-color: #ffffff;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+.user-message {
+  background-color: #f1f1f1;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.bot-message {
+  background-color: #e5f3ff;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.response-message {
+  background-color: #d9ead3;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.message-time {
+  font-size: 12px;
+  color: #999999;
+}
+
+.message-text {
+  margin-top: 5px;
+}
+
+.voice-note {
+  margin-top: 10px;
+}
+
+#speech-recognition {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  background-image: url("microphone.png");
+  background-size: cover;
+  cursor: pointer;
+}
+
+#speech-recognition.recording {
+  background-image: url("microphone-red.png");
+}
+

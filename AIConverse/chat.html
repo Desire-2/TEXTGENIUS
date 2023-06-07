@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+
+	<title>AIConverse</title>
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+	<h1>Welcome to AIConverse!</h1>
+	<form action="/conversation" method="post" enctype="multipart/form-data">
+	<input type="file" name="file" accept="image/*, application/pdf">
+	<textarea name="text" placeholder="Enter text..."></textarea>
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>
+
