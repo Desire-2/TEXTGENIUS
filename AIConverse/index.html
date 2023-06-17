@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+    <title>	AI CONVERSE</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+    <script src="script.js"></script>
+</head>
+<body>
+    <div class="chat-container">
+        <div class="chat-header">
+            <h2>AI CONVERSE</h2>
+        </div>
+        <div class="chat-messages">
+            {% for message in messages %}
+                {% if message.sender == "User" %}
+                    <div class="user-message">
+                        <p>{{ message.text }}</p>
+                    </div>
+                {% elif message.sender == "Bot" and message.text %}
+                    <div class="bot-message">
+                        <p>{{ message.text }}</p>
+                    </div>
+                {% elif message.sender == "Bot" and message.image %}
+                    <div class="bot-message">
+                        <img src="data:image/png;base64,{{ message.image }}" alt="Generated Image">
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+        <div class="chat-input">
+            <form method="POST" action="/" enctype="multipart/form-data">
+                <input type="file" name="file" accept="image/*,application/pdf" required>
+                <input type="submit" value="Upload">
+            </form>
+            <form method="POST" action="/">
+                <input type="text" name="message" placeholder="Enter your message" required>
+                <input type="submit" value="Send">
+            </form>
+        </div>
+    </div>
+</body>
+</html>
+</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="chat-container">
+        <div class="chat-header">
+            <h2></h2>
+        </div>
+        <div class="chat-messages">
+            {% for message in messages %}
+                {% if message.sender == "User" %}
+                    <div class="user-message">
+                        <p>{{ message.text }}</p>
+                    </div>
+                {% elif message.sender == "Bot" and message.text %}
+                    <div class="bot-message">
+                        <p>{{ message.text }}</p>
+                    </div>
+                {% elif message.sender == "Bot" and message.image %}
+                    <div class="bot-message">
+                        <img src="data:image/png;base64,{{ message.image }}" alt="Generated Image">
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+        <div class="chat-input">
+            <form method="POST" action="/" enctype="multipart/form-data">
+                <input type="file" name="file" accept="image/*,application/pdf" required>
+                <input type="submit" value="Upload">
+            </form>
+            <form method="POST" action="/">
+                <input type="text" name="message" placeholder="Enter your message" required>
+                <input type="submit" value="Send">
+            </form>
+        </div>
+    </div>
+</body>
+</html>
