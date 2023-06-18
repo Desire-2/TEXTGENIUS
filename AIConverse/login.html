@@ -1,0 +1,17 @@
+
+
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="container">
+    <h2>Login</h2>
+    <form method="POST" action="{{ url_for('login') }}">
+      {{ form.csrf_token }}
+      <label for="email">Email</label>
+      {{ form.email }}
+      <label for="password">Password</label>
+      {{ form.password }}
+      {{ form.submit }}
+    </form>
+  </div>
+{% endblock %}

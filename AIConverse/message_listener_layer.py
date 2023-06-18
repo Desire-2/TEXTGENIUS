@@ -1,4 +1,4 @@
-from yowsup.layers import YowLayerEvent, YowParallelLayer
+from yowsup.layers import YowParallelLayer, YowLayerEvent
 from yowsup.layers.auth import YowAuthenticationProtocolLayer
 from yowsup.layers.network import YowNetworkLayer
 from yowsup.layers.protocol_messages import YowMessagesProtocolLayer
@@ -8,6 +8,7 @@ from yowsup.layers.protocol_iq import YowIqProtocolLayer
 from yowsup.layers.logger import YowLoggerLayer
 import openai
 
+openai.api_key = "YOUR_API_KEY"
 class MessageListenerLayer(YowParallelLayer):
     def __init__(self):
         super(MessageListenerLayer, self).__init__()
@@ -63,10 +64,9 @@ class MessageListenerLayer(YowParallelLayer):
             return "praise"
         elif sentiment < 0:
             return "complain"
-        else:
+        else
             return "request"
 
 if __name__ == "__main__":
     stack = MessageListenerLayer()
     stack.start()
-

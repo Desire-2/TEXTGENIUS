@@ -1,0 +1,16 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="container">
+    <h2>Profile</h2>
+    <div>
+      <img src="{{ user.profile_picture }}" alt="Profile Picture">
+      <h3>{{ user.username }}</h3>
+      <p>Email: {{ user.email }}</p>
+      <p>Phone Number: {{ user.phone }}</p>
+      <p>Website: {{ user.website }}</p>
+      <p>Social Media: {{ user.social_media }}</p>
+    </div>
+  </div>
+{% endblock %}
