@@ -1,84 +1,68 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title><!DOCTYPE html>
-<html>
-<head>
-	<meta charset="UTF-8">
-    <title>	AI CONVERSE</title>
-	<link rel="stylesheet" type="text/css" href="style.css">
-    <script src="script.js"></script>
+    <title>AI Chatbot</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="path/to/your/css/file.css">
 </head>
 <body>
-    <div class="chat-container">
-        <div class="chat-header">
-            <h2>AI CONVERSE</h2>
-        </div>
-        <div class="chat-messages">
-            {% for message in messages %}
-                {% if message.sender == "User" %}
-                    <div class="user-message">
-                        <p>{{ message.text }}</p>
-                    </div>
-                {% elif message.sender == "Bot" and message.text %}
-                    <div class="bot-message">
-                        <p>{{ message.text }}</p>
-                    </div>
-                {% elif message.sender == "Bot" and message.image %}
-                    <div class="bot-message">
-                        <img src="data:image/png;base64,{{ message.image }}" alt="Generated Image">
-                    </div>
-                {% endif %}
-            {% endfor %}
-        </div>
-        <div class="chat-input">
-            <form method="POST" action="/" enctype="multipart/form-data">
-                <input type="file" name="file" accept="image/*,application/pdf" required>
-                <input type="submit" value="Upload">
-            </form>
-            <form method="POST" action="/">
-                <input type="text" name="message" placeholder="Enter your message" required>
-                <input type="submit" value="Send">
-            </form>
-        </div>
+    <h1>AI Chatbot</h1>
+    <div id="chat-container">
+        {% for message in messages %}
+            <div class="message">
+                <p class="sender">{{ message.sender }}</p>
+                <p class="text">{{ message.text }}</p>
+            </div>
+        {% endfor %}
     </div>
-</body>
-</html>
-</title>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
-</head>
-<body>
-    <div class="chat-container">
-        <div class="chat-header">
-            <h2></h2>
-        </div>
-        <div class="chat-messages">
-            {% for message in messages %}
-                {% if message.sender == "User" %}
-                    <div class="user-message">
-                        <p>{{ message.text }}</p>
-                    </div>
-                {% elif message.sender == "Bot" and message.text %}
-                    <div class="bot-message">
-                        <p>{{ message.text }}</p>
-                    </div>
-                {% elif message.sender == "Bot" and message.image %}
-                    <div class="bot-message">
-                        <img src="data:image/png;base64,{{ message.image }}" alt="Generated Image">
-                    </div>
-                {% endif %}
-            {% endfor %}
-        </div>
-        <div class="chat-input">
-            <form method="POST" action="/" enctype="multipart/form-data">
-                <input type="file" name="file" accept="image/*,application/pdf" required>
-                <input type="submit" value="Upload">
-            </form>
-            <form method="POST" action="/">
-                <input type="text" name="message" placeholder="Enter your message" required>
-                <input type="submit" value="Send">
-            </form>
-        </div>
-    </div>
+    <form id="chat-form" method="POST" enctype="multipart/form-data">
+        <input type="file" id="file-input" name="file">
+        <input type="text" id="message-input" name="message">
+        <input type="submit" id="send-button" value="Send">
+    </form>
+    <script>
+        $(document).ready(function() {
+            $("#chat-form").submit(function(event) {
+                event.preventDefault();
+                var fileInput = document.getElementById("file-input");
+                var messageInput = document.getElementById("message-input");
+                var file = fileInput.files[0];
+                var message = messageInput.value;
+
+                if (file) {
+                    var formData = new FormData();
+                    formData.append("file", file);
+                    $.ajax({
+                        url: "/chat",
+                        type: "POST",
+                        data: formData,
+                        processData: false,
+                        contentType: false,
+                        success: function(response) {
+                            $("#chat-container").html(response);
+                        },
+                        error: function(error) {
+                            console.log(error);
+                        }
+                    });
+                } else if (message) {
+                    $.ajax({
+                        url: "/chat",
+                        type: "POST",
+                        data: { message: message },
+                        success: function(response) {
+                            $("#chat-container").html(response);
+                        },
+                        error: function(error) {
+                            console.log(error);
+                        }
+                    });
+                }
+            
+                messageInput.value = "";
+                fileInput.value = null;
+            });
+        });
+    </script>
 </body>
 </html>
